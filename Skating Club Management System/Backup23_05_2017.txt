@@ -1,0 +1,71 @@
+
+
+
+	-------------------------ADMIN-----------------------------
+
+
+
+
+ A.Id	 Name 	 Contact  	 Mail 	 Uname 	 Passward 
+
+
+
+1 	sneha	9922992244	sne@gmail.com	sneha	sawant
+
+2 	Preeti	9922922833	skatingsir@gmail.com	f&facademy	skatingsir
+
+
+
+
+
+
+	-------------------------STUDENT-----------------------------
+
+
+
+
+ S.ID 	 Name 	 Address 	 DOB 	 Contact 	 Email  	 AdmFee 	 PRN  	 School 	 B.ID 	 Admdate 	 Contact2 	 Interest 
+
+
+1 	Atharva	Chandrakant	Sawant	ChavanNagar	08-09-2002	8877665500	ruchikap7214@gmail.com	600	7766	ppps	2	25-02-2017	7766554488	fitness
+
+2 	ruchi	anil	phalke	kondhwa,pune	11/01/1997	9552514500	ruchiphalke.2013@gmail.com	600	111	ces	1	30/04/2017	95524500	  Competition 
+
+3 	om	aakash	mahajan	ramwadi,pune	06/06/2006	8967543267	amphalke@gmail.com	600	123	loyala	2	01/05/2017	9076123456	  Fun  Competition 
+
+4 	Anil	Maruti	Phalke	Kondhwa	11-09-1968	9822776668	amphalke@gmail.com	600	1111	mes	2	25-01-2017	7766554488	fitness
+
+
+
+
+
+
+	-------------------------STUDENT ACHIEVEMENTS-----------------------------
+
+
+
+
+AchNo 	 S.ID 	 Date 	 Achievement 
+
+
+
+1 	1	17/04/2017	interschool champian
+
+2 	1	02/05/2017 	runner up
+
+
+
+
+
+
+	-------------------------FEE RECORDS-----------------------------
+
+
+
+
+F.ID 	 S.ID 	 PayDate 	 Amount 	 ToDate 	 FromDate 	 transcnt 
+
+
+
+1 	1	23/01/2017	600	01/02/2017	01/03/2017	1
+

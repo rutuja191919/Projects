@@ -1,0 +1,169 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.sql.*;
+
+class MainLogin extends JFrame implements ActionListener
+{
+ public JLabel uname, pswrd;
+ public JTextField user;
+ public JPasswordField pwd;
+ public JButton login,cancel;
+ public static String struser, strpwd;
+ boolean flag;
+Staticinfo s;
+ Connection con = null;
+  Statement stmt = null;
+  ResultSet rs;
+
+  public MainLogin ()
+  {
+    super ("Login Page");
+       	s=new Staticinfo();
+    JLabel background=new JLabel(new ImageIcon(ClassLoader.getSystemResource ("pics/sc1.JPG")));
+				  this.add(background);
+    this.setSize (1100,700);
+
+
+    this.setDefaultCloseOperation (EXIT_ON_CLOSE);
+
+
+    uname = new JLabel ("User Name:");
+    pswrd = new JLabel ("Password:");
+    user=new JTextField();
+    pwd=new JPasswordField();    
+
+    login =
+      new JButton ("Login",
+		   new ImageIcon (ClassLoader.
+				  getSystemResource ("pics/button_ok.png")));
+    cancel =
+      new JButton ("Cancel",
+		   new ImageIcon (ClassLoader.
+				  getSystemResource
+				  ("pics/button_cancel.png")));
+
+    uname.setBounds(790,270,100,25);
+    pswrd.setBounds(790,305,100,25);
+    user.setBounds(880,270,160,25);
+    pwd.setBounds(880,305,160,25);
+    login.setBounds(750,370,130,30);
+    cancel.setBounds(920,370,130,30);
+
+    background.add (uname);
+    background.add (pswrd);
+    background.add (user);
+    background.add (pwd);
+    background.add (login);
+    background.add (cancel);
+
+    login.addActionListener (this);
+    cancel.addActionListener (this);
+
+	this.setVisible (true);
+
+  }
+
+
+
+  public static void main (String s[])
+  {
+    new MainLogin ();
+
+  }
+
+public int search()
+{
+int i=0;
+try
+{	s.rs=s.stmt.executeQuery("select * from admin");
+		while(s.rs.next())
+		{
+			if(user.getText().equals(s.rs.getString(5)) && pwd.getText().equals(s.rs.getString(6)))
+			{
+				i=s.rs.getInt(1);
+				break;
+			}
+		 }
+return i;
+}
+catch(Exception e )
+{
+System.out.println(e);
+return i;
+}
+
+}
+
+  public void actionPerformed (ActionEvent e)
+  {
+     try
+    {
+     	//while ()
+		{connect();
+			 struser= "abc";
+			 strpwd= "123";
+	  		if (struser.equals (user.getText ()) && (strpwd.equals (pwd.getText())))
+	    		{
+				System.out.println("*************************");
+	      			flag = true;	
+	    		}
+			else if(search()!=0)
+			{
+				flag=true;
+			}
+	  		else
+	    		flag = false;
+		}
+
+    	}
+    catch (Exception ce)
+    {
+      System.out.println (ce);
+    }
+
+
+if (e.getSource() == login)
+{
+	if (flag == true)
+	  {
+		{
+			new ManMain1();
+			dispose();
+		}
+		
+	  }
+	else
+	  {
+	    	if (user.getText ().equals (""))
+	     {
+			JOptionPane.showMessageDialog (null,
+					       "Please enter the Username","Login Failed",
+					       JOptionPane.DEFAULT_OPTION);
+		user.requestFocus ();
+	      }
+
+	    else if (pwd.getText ().equals (""))
+	      {
+			JOptionPane.showMessageDialog (null,
+					       "Please enter the Password","Login Failed",
+					       JOptionPane.DEFAULT_OPTION);
+		pwd.requestFocus ();
+	      }
+
+	    else
+	      {
+				JOptionPane.showMessageDialog (null, "Invalid Username or Password","Login Failed",
+					       JOptionPane.DEFAULT_OPTION);
+			pwd.setText ("");
+			pwd.requestFocus ();
+	      }
+	  }
+     }
+    		else
+      	{
+			dispose ();
+			new MainScreen ();
+      	}
+  }
+ }

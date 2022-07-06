@@ -1,0 +1,95 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class DAdmin extends JFrame implements ActionListener
+{
+  JLabel un,pwd;
+  JTextField uname;
+JPasswordField pswd;
+  JButton delete,back;
+
+  public DAdmin()
+  {
+    super ("delete record");
+       	
+  JLabel background=new JLabel(new ImageIcon(ClassLoader.getSystemResource ("pics/attend1.png")));
+				  this.add(background);
+    this.setSize (1000,700);
+
+
+    this.setDefaultCloseOperation (EXIT_ON_CLOSE);
+
+    un= new JLabel ("admin username:");
+    uname=new JTextField();
+	pwd= new JLabel ("admin passward:");
+    pswd=new JPasswordField();
+    delete =
+      new JButton ("DELETE");
+	back=new JButton ("back",
+		   new ImageIcon (ClassLoader.
+				  getSystemResource ("pics/back.png")));
+
+    un.setBounds(200,140,160,30);
+    uname.setBounds(310,140,200,30);
+    pwd.setBounds(200,190,160,50);
+    pswd.setBounds(310,190,200,50);
+  
+  	delete.setBounds(700,450,120,32);
+    back.setBounds(700,490,120,32);
+
+    background.add (un);
+    background.add (uname);
+background.add (pwd);
+background.add (pswd);
+
+    background.add (delete);
+    background.add (back);
+
+    delete.addActionListener (this);
+    back.addActionListener(this);
+    
+	this.setVisible (true);
+
+  }
+  public static void main (String s[])
+  {
+    new DAdmin();
+  }
+  public void actionPerformed (ActionEvent e3)
+  {
+
+	if(e3.getSource()==delete)
+	{
+	
+	if (uname.getText ().equals ("") ) 
+	     {
+		JOptionPane.showMessageDialog (null,
+					       "enter username ","error",
+					       JOptionPane.DEFAULT_OPTION);
+		uname.requestFocus ();
+
+			if(pswd.getText ().equals (""))
+			{
+				JOptionPane.showMessageDialog (null,
+					       "enter passward ","error",
+					       JOptionPane.DEFAULT_OPTION);
+						pswd.requestFocus ();
+			}
+//validate userid and passward
+	      }
+
+	    else 
+	      {
+			new DelAdmin();
+			dispose();
+	      }
+	}
+	if(e3.getSource()==back)
+	{
+	new Admin();
+	dispose();
+	}
+
+}
+}

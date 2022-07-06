@@ -1,0 +1,79 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class EditRec extends JFrame implements ActionListener
+{
+  JLabel id;
+  JTextField sid;
+  JButton update,back;
+
+  public EditRec ()
+  {
+    super ("Edit student record");
+       	
+  JLabel background=new JLabel(new ImageIcon(ClassLoader.getSystemResource ("pics/attend1.png")));
+				  this.add(background);
+    this.setSize (1000,700);
+
+
+    this.setDefaultCloseOperation (EXIT_ON_CLOSE);
+
+    id= new JLabel ("student id:");
+    sid=new JTextField();
+    update =
+      new JButton ("UPDATE");
+	back=new JButton ("back",
+		   new ImageIcon (ClassLoader.
+				  getSystemResource ("pics/back.png")));
+
+    id.setBounds(200,140,160,30);
+    sid.setBounds(310,140,200,30);
+ 
+    update.setBounds(700,450,120,32);
+    back.setBounds(700,490,120,32);
+
+    background.add (id);
+    background.add (sid);
+
+    background.add (update);
+    background.add (back);
+
+    update.addActionListener (this);
+    back.addActionListener(this);
+    
+	this.setVisible (true);
+
+  }
+  public static void main (String s[])
+  {
+    new EditRec();
+  }
+  public void actionPerformed (ActionEvent e3)
+  {
+
+	if(e3.getSource()==update)
+	{
+	
+	if (sid.getText ().equals ("") ) 
+	     {
+		JOptionPane.showMessageDialog (null,
+					       "enter student id","error",
+					       JOptionPane.DEFAULT_OPTION);
+		sid.requestFocus ();
+	      }
+
+	    else 
+	      {
+			new Edit();
+			dispose();
+	      }
+	}
+	if(e3.getSource()==back)
+	{
+	new ManMain1();
+	dispose();
+	}
+
+}
+}

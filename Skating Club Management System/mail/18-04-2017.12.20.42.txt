@@ -1,0 +1,29 @@
+BEGIN:VNOTE
+VERSION:1.1
+BODY;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE
+:Basic concept for creating backup:=0A=0AProcess p =3D null;
+ 
+
+try 
+{ 
+Runtime runtime =3D Runtime.getRuntime();
+ p =3D runtime.exec("mysqldump -uroot -pdbpass --add-drop-database -B dbname -r " + "filepath" + "Filename" + ".sql");
+ //change the dbpass and dbname with your dbpass and dbname int processComplete =3D p.waitFor();
+ if (processComplete =3D=3D 0)
+ {
+ System.out.println("Backup created successfully!");
+ }
+ else 
+{
+ lblMessage.setText("Could not create the backup");
+}
+ 
+} 
+catch (Exception e)
+ {
+ e.printStackTrace();
+ }
+ =0A=0ABasic concept for restore backup=0A=0AString[] restoreCmd =3D new String[]{"mysql ", "--user=3D" + dbUserName, "--password=3D" + dbPassword, "-e", "source " + source}; Process runtimeProcess; try { runtimeProcess =3D Runtime.getRuntime().exec(restoreCmd); int processComplete =3D runtimeProcess.waitFor(); if (processComplete =3D=3D 0) { System.out.println("Restored successfully!"); } else { System.out.println("Could not restore the backup!"); } } catch (Exception ex) { ex.printStackTrace(); }
+DCREATED:20170418T122042
+LAST-MODIFIED:20170418T122042
+END:VNOTE

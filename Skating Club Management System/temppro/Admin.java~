@@ -1,0 +1,84 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class Adminlog extends JFrame implements ActionListener
+{
+  JButton Admin,dltAdmin,logout,viewAdmin,editAdmin;
+  public Adminlog ()
+  {
+    super ("Admin Main Page");
+       	
+  JLabel background=new JLabel(new ImageIcon(ClassLoader.getSystemResource ("pics/sc1.JPG")));
+this.add(background);
+    this.setSize (1320, 730);
+
+
+    this.setDefaultCloseOperation (EXIT_ON_CLOSE);
+
+    Admin = new JButton ("NEW Registration of Admin");
+    dltAdmin = new JButton ("Delete Admin");
+    viewAdmin=new JButton("view Admin record");
+    editAdmin=new JButton("edit Admin record");
+    logout = new JButton ("<<BACK");
+
+   /* Admin.setBounds(280,130,180,39);
+    edit.setBounds(280,200,180,39);
+    fee.setBounds(280,270,180,39);
+
+    Stud.setBounds(540,130,180,39);   
+    dltAdmin.setBounds(540,200,180,39);    
+    view.setBounds(540,270,180,39);
+
+    dltStud.setBounds(800,200,180,39);
+    attend.setBounds(800,130,180,39);
+    serv.setBounds(800,270,180,39);*/
+
+
+    Admin.setBounds(280,130,180,39);
+    editAdmin.setBounds(280,200,180,39);
+    dltAdmin.setBounds(280,270,180,39);
+    viewAdmin.setBounds(280,340,180,39);
+
+    logout.setBounds(840,520,210,39);
+
+    background.add (Admin);
+    background.add (dltAdmin);
+    background.add (logout);
+    background.add (editAdmin);
+    background.add (viewAdmin);
+
+
+
+    Admin.addActionListener (this);
+    dltAdmin.addActionListener (this);
+    logout.addActionListener (this);
+ editAdmin.addActionListener (this);
+ viewAdmin.addActionListener (this);
+
+	this.setVisible (true);
+
+  }
+  public static void main (String s[])
+  {
+    new Adminlog ();
+  }
+  public void actionPerformed (ActionEvent e3)
+  {
+	if (e3.getSource () == logout)
+      {
+	new ManMain1();
+	dispose();
+      }
+	else if(e3.getSource()==Admin)
+	{
+	new AddAdmin();
+	dispose();
+	}
+	else if(e3.getSource()==dltAdmin)
+	{
+	new DAdmin();
+	dispose();
+	}
+  }
+}

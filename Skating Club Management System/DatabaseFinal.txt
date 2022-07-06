@@ -1,0 +1,132 @@
+1]
+mysql>  create table Student(sid int primary key,fname varchar(50),mname varchar(50),lname varchar(50),address varchar(80),dob varchar(20) ,contact numeric,email varchar(50),admfee varchar(20),prn numeric,school varchar(50),bid int,date varchar(20),contact2 numeric,interest varchar(20) );
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> insert into Student values(1,'Atharva','Chandrakant','Sawant','ChavanNagar','08-09-2002',8877665500,'atharva@gmail.com','600',7766,'ppps',2,'25-02-2017',7766554488,'fitness');
+Query OK, 1 row affected (0.36 sec)
+
+mysql> select * from student;
++-----+---------+--------+-------------+------------+------------+-------------------+-------+------+------+--------+------+------------+------------+
+| sid | fname   | lname  | address     | dob        | contact    | email             | month | prn  | age  | school | bid  | date       | contact2   |
++-----+---------+--------+-------------+------------+------------+-------------------+-------+------+------+--------+------+------------+------------+
+|   1 | Atharva | Sawant | ChavanNagar | 08-09-2002 | 8877665500 | atharva@gmail.com | jan   | 7766 |   14 | ppps   |    2 | 25-02-2017 | 7766554488 |
++-----+---------+--------+-------------+------------+------------+-------------------+-------+------+------+--------+------+------------+------------+
+
+
+
+2]
+mysql>  create table Admin(aid int primary key,name varchar(20),contact varchar(10),mail varchar(20),uname varchar(20),passward varchar(20));
+Query OK, 0 rows affected (0.13 sec)
+mysql> insert into admin values(1,'sneha',9922992244,'sne@gmail.com','sneha','sawant');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from admin;
++-----+-------+------------+---------------+-------+----------+
+| aid | name  | contact    | mail          | uname | passward |
++-----+-------+------------+---------------+-------+----------+
+|   1 | sneha | 9922992244 | sne@gmail.com | sneha | sawant   |
++-----+-------+------------+---------------+-------+----------+
+1 row in set (0.00 sec)
+
+
+3]
+tybcs1=# create table attendance(sid int,foreign key(sid)references student(sid),date varchar(20),primary key(sid,date),status char(1));
+
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "attendance_pkey" for table "attendance"
+
+CREATE TABLE
+
+mysql> select * from attendance;
++-----+------------+--------+
+| sid | date       | status |
++-----+------------+--------+
+|   1 | 29/02/2017 | p      |
++-----+------------+--------+
+1 row in set (0.00 sec)
+
+
+4]
+mysql> create table timetrial (tno int primary key ,sid int,foreign key(sid)references student(sid),date varchar(20),time float);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into timetrial values(1,1,'29/02/2017',20.25);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from timetrial;
++-----+------+------------+------+
+| tno | sid  | date       | time |
++-----+------+------------+------+
+|   1 |    1 | 29/02/2017 |   20 |
++-----+------+------------+------+
+1 row in set (0.00 sec)
+
+5]
+mysql> create table Fee(fid int primary key,sid int,foreign key(sid) references student(sid),paydate varchar(20),amount varchar(20),fromdate varchar(20),todate varchar(20),transcnt int);
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into fee values(1,1,'23/01/2017','600','01/02/2017','01/03/2017',1);
+Query OK, 1 row affected (0.36 sec)
+
+mysql> select * from fee;
++-----+------+------------+--------+------------+------------+----------+
+| fid | sid  | paydate    | amount | todate     | fromdate   | transcnt |
++-----+------+------------+--------+------------+------------+----------+
+|   1 |    1 | 23/01/2017 | 600    | 01/02/2017 | 01/03/2017 |        1 |
+|   2 |    2 | 23/01/2017 | 600    | 01/02/2017 | 01/03/2017 |        1 |
+|   3 |    3 | 23/01/2017 | 600    | 01/02/2017 | 01/03/2017 |        1 |
+|   4 |    4 | 23/01/2017 | 600    | 01/02/2017 | 01/03/2017 |        1 |
+|   5 |    5 | 23/01/2017 | 600    | 01/02/2017 | 01/03/2017 |        1 |
+|   6 |    6 | 23/01/2017 | 600    | 01/02/2017 | 01/03/2017 |        1 |
++-----+------+------------+--------+------------+------------+----------+
+6 rows in set (0.00 sec)
+
+
+
+6]
+mysql> create table sr(srid int primary key,sid int,foreign key(sid) references student(sid),sdate varchar(20),nsdate varchar(20),type varchar(20),tid int);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into sr values(1,1,'21/01/2017','21/03/2017','powerboosting',1)
+    -> ;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from sr;
++------+------+------------+------------+---------------+------+
+| srid | sid  | sdate      | nsdate     | type          | tid  |
++------+------+------------+------------+---------------+------+
+|    1 |    1 | 21/01/2017 | 21/03/2017 | powerboosting |    1 |
++------+------+------------+------------+---------------+------+
+1 row in set (0.00 sec)
+
+
+7]
+mysql>  create table achiv(achno int primary key,sid int,foreign key(sid)references student(sid),date varchar(20),achivment varchar(50));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into achiv values(1,1,'17/04/2017',"interschool champian");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from achiv;
++-------+------+------------+----------------------+
+| achno | sid  | date       | achivment            |
++-------+------+------------+----------------------+
+|     1 |    1 | 17/04/2017 | interschool champian |
++-------+------+------------+----------------------+
+1 row in set (0.00 sec)
+
+
+8]
+mysql> create table camp(sno int primary key,sid int,foreign key(sid)references student(sid),c1 int ,c2 int ,c3 int ,c4 int ,c5 int,c6 int,fee int);
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> insert into camp values(1,1,11,21,31,41,51,61,700);
+Query OK, 1 row affected (0.05 sec)
+
+
+mysql> select * from camp;
++-----+------+------+------+------+------+------+------+------+
+| sno | sid  | c1   | c2   | c3   | c4   | c5   | c6   | fee  |
++-----+------+------+------+------+------+------+------+------+
+|   1 |    1 |   11 |   21 |   31 |   41 |   51 |   61 |  700 |
++-----+------+------+------+------+------+------+------+------+
+1 row in set (0.00 sec)

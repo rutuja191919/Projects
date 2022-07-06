@@ -1,0 +1,60 @@
+import javax.swing.*;
+import java.awt.image.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class MainScreen extends JFrame implements ActionListener
+{
+  JLabel filelab;
+  Font f;
+  JButton btnClose, btnLogin;
+  Dimension screen = Toolkit.getDefaultToolkit ().getScreenSize ();
+  
+	public MainScreen ()
+  {
+  	super ("Welcome");
+    this.setSize (1366, 768);
+    this.setDefaultCloseOperation (EXIT_ON_CLOSE);
+    this.setResizable (true);
+    this.setLayout(new FlowLayout());
+    filelab = new JLabel ("WELCOME TO FAST AND FURIOUS\nSKATING ACADAMY!!!");
+    btnClose = new JButton ("Close");
+    btnLogin= new JButton ("Login");
+    filelab.setBounds (78, 40, 820, 55);
+    f=new Font("",0,30);
+    filelab.setFont(f);
+    filelab.setForeground(Color.RED);
+
+    btnLogin.setBounds (78, 120 , 250, 50);
+    btnClose.setBounds (78, 225, 250, 50);
+
+   	JLabel background=new JLabel(new ImageIcon(ClassLoader.getSystemResource ("pics/mainframe.JPG")));
+  	this.add(background);
+
+	background.add (filelab);
+    background.add (btnLogin);
+    background.add (btnClose);
+
+    btnLogin.addActionListener (this);
+    btnClose.addActionListener (this);
+	this.setVisible (true);
+
+  	}
+  public static void main (String s[])
+  {
+    new MainScreen ();
+  }
+  public void actionPerformed (ActionEvent e2)
+  {
+
+    if (e2.getSource () == btnLogin)
+      {
+	new MainLogin ();
+	dispose ();
+      }
+    else if (e2.getSource () == btnClose)
+      {
+	System.exit (0);
+      }
+  }
+}
